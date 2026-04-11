@@ -1,19 +1,42 @@
+:root {
+    --bg-gradient: linear-gradient(to right, #6a11cb, #2575fc);
+    --container-bg: rgba(255, 255, 255, 0.1);
+    --text-color: white;
+    --ball-bg: linear-gradient(145deg, #e6e6e6, #ffffff);
+    --ball-text: #333;
+    --btn-bg: #ff4081;
+    --btn-text: white;
+}
+
+[data-theme="light"] {
+    --bg-gradient: linear-gradient(to right, #f5f7fa, #c3cfe2);
+    --container-bg: rgba(255, 255, 255, 0.9);
+    --text-color: #333;
+    --ball-bg: linear-gradient(145deg, #2575fc, #6a11cb);
+    --ball-text: white;
+    --btn-bg: #333;
+    --btn-text: white;
+}
+
 body {
     font-family: 'Helvetica Neue', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    color: white;
+    background: var(--bg-gradient);
+    color: var(--text-color);
+    margin: 0;
+    transition: background 0.3s, color 0.3s;
 }
 
 .container {
     text-align: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: var(--container-bg);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
 }
 
 h1 {
@@ -27,10 +50,10 @@ h1 {
     cursor: pointer;
     border: none;
     border-radius: 10px;
-    background: #ff4081;
-    color: white;
+    background: var(--btn-bg);
+    color: var(--btn-text);
     margin-top: 30px;
-    transition: transform 0.2s;
+    transition: transform 0.2s, background 0.3s, color 0.3s;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
 }
 
@@ -38,26 +61,25 @@ h1 {
     transform: scale(1.05);
 }
 
+#theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background: var(--container-bg);
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    transition: all 0.3s;
+}
+
 lotto-numbers {
     display: flex;
     gap: 15px;
     justify-content: center;
     margin-top: 30px;
-}
-
-lotto-numbers > div {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: linear-gradient(145deg, #e6e6e6, #ffffff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #333;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    animation: pop-in 0.5s ease-out forwards;
 }
 
 @keyframes pop-in {
