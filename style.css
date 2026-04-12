@@ -262,11 +262,43 @@ footer {
     }
 }
 
-@keyframes pop-in {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
+.faq-section {
+    text-align: left;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .faq-section {
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.faq-section h3 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    color: var(--btn-bg);
+}
+
+details {
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+[data-theme="light"] details {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+summary {
+    font-weight: bold;
+    outline: none;
+}
+
+details p {
+    margin-top: 10px;
+    line-height: 1.6;
+    opacity: 0.9;
+    cursor: default;
 }

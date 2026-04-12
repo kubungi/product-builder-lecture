@@ -33,12 +33,24 @@
             </p>
             <lotto-numbers></lotto-numbers>
             <button id="generate-btn">번호 생성하기</button>
+            
+            <div class="faq-section">
+                <h3>자주 묻는 질문 (FAQ)</h3>
+                <details>
+                    <summary>번호 생성 알고리즘은 어떤 방식인가요?</summary>
+                    <p>본 서비스의 알고리즘은 순수 난수 생성 방식을 따르며, 모든 숫자가 동일한 확률로 추출되도록 설계되었습니다. 특정 회차의 당첨 번호를 보장하지는 않으나, 재미와 편의성을 위해 최적화되어 있습니다.</p>
+                </details>
+                <details>
+                    <summary>생성된 번호는 저장되나요?</summary>
+                    <p>사용자의 프라이버시를 위해 생성된 번호는 어디에도 저장되지 않으며, 페이지를 새로고침하면 사라집니다. 마음에 드는 번호가 있다면 메모해 두시기 바랍니다.</p>
+                </details>
+            </div>
         </section>
 
         <section id="animal-test" class="container animal-test-container">
             <h2>동물상 테스트 (강아지 vs 고양이)</h2>
             <p class="description">
-                구글의 인공지능(AI) Teachable Machine을 활용하여 당신의 얼굴 이미지를 분석합니다. 당신은 귀여운 강아지상인가요, 아니면 시크한 고양이상인가요? 사진을 업로드하여 즉석에서 결과를 확인해보세요. 업로드된 사진은 서버에 저장되지 않으므로 안심하고 사용하실 수 있습니다.
+                구글의 인공지능(AI) Teachable Machine을 활용하여 당신의 얼굴 이미지를 분석합니다. 당신은 귀여운 강아지상인가요, 아니면 시크한 고양이상인가요? 사진을 업로드하여 즉석에서 결과를 확인해보세요.
             </p>
             <div class="upload-section">
                 <input type="file" id="image-upload" accept="image/*" hidden>
@@ -48,6 +60,24 @@
                 <img id="image-preview" src="" alt="Preview" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
             </div>
             <div id="label-container"></div>
+
+            <div class="faq-section" style="margin-top: 30px;">
+                <h3>동물상 테스트 안내</h3>
+                <p class="description">
+                    본 테스트는 수만 장의 강아지와 고양이 사진 데이터를 학습한 인공지능 모델을 기반으로 합니다. 사용자의 눈, 코, 입 비율과 윤곽을 분석하여 가장 유사한 동물상을 백분율로 보여드립니다.
+                </p>
+                <details>
+                    <summary>사진 데이터는 안전한가요?</summary>
+                    <p>네, 매우 안전합니다. 모든 이미지 분석은 사용자의 브라우저 내에서 직접 수행되며, 어떤 이미지도 서버로 전송되거나 저장되지 않습니다.</p>
+                </details>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2>사이트 소개 (About Multi-Tool)</h2>
+            <p class="description">
+                Multi-Tool은 일상에서 소소한 즐거움을 줄 수 있는 다양한 도구를 제공하는 웹 서비스입니다. 우리는 최신 웹 기술과 인공지능을 활용하여 누구나 쉽고 재미있게 이용할 수 있는 유용한 기능을 지속적으로 개발하고 있습니다. 사용자의 피드백을 바탕으로 더 나은 서비스를 만들어 나가는 것이 우리의 목표입니다.
+            </p>
         </section>
 
         <section id="inquiry" class="form-container">
