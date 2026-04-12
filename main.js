@@ -91,6 +91,67 @@ themeToggle.addEventListener('click', () => {
     themeToggle.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
 });
 
+// --- Teachable Machine Logic (File Upload) ---
+const URL = "https://teachablemachine.withgoogle.com/models/GL9c80bVi/";
+let model, labelContainer, maxPredictions;
+
+const uploadBtn = document.getElementById('upload-btn');
+const imageUpload = document.getElementById('image-upload');
+const imagePreview = document.getElementById('image-preview');
+const imagePreviewContainer = document.getElementById('image-preview-container');
+
+async function loadModel() {
+    if (!model) {
+        const modelURL = URL + "model.json";
+        const metadataURL = URL + "metadata.json";
+        model = await tmImage.load(modelURL, metadataURL);
+        maxPredictions = model.getTotalClasses();
+        
+        labelContainer = document.getElementById("label-container");
+        labelContainer.innerHTML = '';
+        for (let i = 0; i < maxPredictions; i++) {
+            labelContainer.appendChild(document.createElement("div"));
+        }
+    }
+}
+
+uploadBtn.addEventListener('click', () => imageUpload.click());
+
+imageUpload.addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    // Show preview
+    const reader = new FileReader();
+    reader.onload = async (event) => {
+        imagePreview.src = event.target.result;
+        imagePreviewContainer.style.display = 'block';
+        
+        uploadBtn.textContent = "분석 중...";
+        uploadBtn.disabled = true;
+
+        await loadModel();
+        await predict(imagePreview);
+
+        uploadBtn.textContent = "다른 사진 업로드하기";
+        uploadBtn.disabled = false;
+    };
+    reader.readAsDataURL(file);
+});
+
+async function predict(imageElement) {
+    const prediction = await model.predict(imageElement);
+    for (let i = 0; i < maxPredictions; i++) {
+        const classPrediction =
+            prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(0) + "%";
+        labelContainer.childNodes[i].innerHTML = classPrediction;
+        
+        // Add some styling based on probability
+        labelContainer.childNodes[i].style.background = `rgba(76, 175, 80, ${prediction[i].probability * 0.3})`;
+    }
+}
+
+// --- Form Submission Logic ---
 async function handleSubmit(event) {
     event.preventDefault();
     const status = document.createElement('p');

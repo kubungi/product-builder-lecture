@@ -33,7 +33,7 @@ body {
     gap: 40px;
 }
 
-.container, .form-container {
+.container, .form-container, .animal-test-container {
     text-align: center;
     background: var(--container-bg);
     padding: 40px;
@@ -42,6 +42,44 @@ body {
     transition: background 0.3s;
     width: 100%;
     max-width: 500px;
+}
+
+#webcam-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+#webcam-container canvas {
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#label-container {
+    margin-top: 20px;
+    font-size: 1.2em;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#label-container div {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+[data-theme="light"] #label-container div {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+#start-test-btn {
+    margin-bottom: 10px;
+    background: #4CAF50; /* Green color for start button */
 }
 
 h2 {
