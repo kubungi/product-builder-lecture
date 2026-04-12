@@ -313,50 +313,54 @@ function renderKBO() {
     const standingsBody = document.getElementById('standings-body');
     const playerStatsGrid = document.getElementById('lg-stats-container');
 
-    // Realistic current KBO top 5 data
+    // Full 10 teams data for more realism
     const standings = [
-        { rank: 1, team: '기아', g: 15, w: 10, l: 5, pct: '.667' },
-        { rank: 2, team: 'LG', g: 16, w: 9, l: 7, pct: '.563' },
-        { rank: 3, team: 'NC', g: 15, w: 9, l: 6, pct: '.600' },
-        { rank: 4, team: 'SSG', g: 16, w: 8, l: 8, pct: '.500' },
-        { rank: 5, team: '두산', g: 15, w: 7, l: 8, pct: '.467' }
+        { rank: 1, team: '기아', logo: '🐯', g: 15, w: 10, l: 5, d: 0, pct: '.667', gb: '-', strk: '2승' },
+        { rank: 2, team: 'LG', logo: '⚾', g: 16, w: 9, l: 7, d: 0, pct: '.563', gb: '1.5', strk: '1패' },
+        { rank: 3, team: 'NC', logo: '🦖', g: 15, w: 9, l: 6, d: 0, pct: '.600', gb: '1.0', strk: '3승' },
+        { rank: 4, team: 'SSG', logo: '🚀', g: 16, w: 8, l: 8, d: 0, pct: '.500', gb: '2.5', strk: '2패' },
+        { rank: 5, team: '두산', logo: '🐻', g: 15, w: 7, l: 8, d: 0, pct: '.467', gb: '3.0', strk: '1승' },
+        { rank: 6, team: 'KT', logo: '🧙', g: 16, w: 7, l: 9, d: 0, pct: '.438', gb: '3.5', strk: '1패' },
+        { rank: 7, team: '한화', logo: '🦅', g: 15, w: 7, l: 8, d: 0, pct: '.467', gb: '3.0', strk: '2승' },
+        { rank: 8, team: '삼성', logo: '🦁', g: 16, w: 7, l: 9, d: 0, pct: '.438', gb: '3.5', strk: '3패' },
+        { rank: 9, team: '롯데', logo: '⚓', g: 15, w: 6, l: 9, d: 0, pct: '.400', gb: '4.0', strk: '1승' },
+        { rank: 10, team: '키움', logo: '🦸', g: 15, w: 6, l: 9, d: 0, pct: '.400', gb: '4.0', strk: '2패' }
     ];
 
-    // Key LG Twins players data
     const players = [
-        { name: '김현수', pos: '외야수', stat1: '.315', label1: '타율', stat2: '2', label2: '홈런' },
-        { name: '오지환', pos: '유격수', stat1: '.285', label1: '타율', stat2: '10', label2: '타점' },
-        { name: '켈리', pos: '선발투수', stat1: '2.85', label1: 'ERA', stat2: '2', label2: '승리' },
-        { name: '임찬규', pos: '선발투수', stat1: '3.12', label1: 'ERA', stat2: '21', label2: '삼진' }
+        { name: '김현수', pos: 'LF', s1: '.315', l1: 'AVG', s2: '2', l2: 'HR' },
+        { name: '오지환', pos: 'SS', s1: '.285', l1: 'AVG', s2: '10', l2: 'RBI' },
+        { name: '박해민', pos: 'CF', s1: '.290', l1: 'AVG', s2: '5', l2: 'SB' },
+        { name: '켈리', pos: 'SP', s1: '2.85', l1: 'ERA', s2: '2', l2: 'W' }
     ];
 
-    // Render Standings
     standingsBody.innerHTML = standings.map(s => `
-        <tr>
-            <td class="standings-rank">${s.rank}</td>
-            <td><strong>${s.team}</strong></td>
+        <tr class="${s.team === 'LG' ? 'lg-highlight' : ''}">
+            <td class="${s.rank <= 3 ? 'team-rank-high' : ''}">${s.rank}</td>
+            <td class="team-name">${s.logo} ${s.team}</td>
             <td>${s.g}</td>
             <td>${s.w}</td>
             <td>${s.l}</td>
-            <td>${s.pct}</td>
+            <td>${s.d}</td>
+            <td><strong>${s.pct}</strong></td>
+            <td>${s.gb}</td>
+            <td>${s.strk}</td>
         </tr>
     `).join('');
 
-    // Render Player Stats
     playerStatsGrid.innerHTML = players.map(p => `
-        <div class="player-item">
+        <div class="player-stat-row">
             <div class="player-info">
-                <h4>${p.name}</h4>
-                <p>${p.pos}</p>
+                <strong>${p.name}</strong> <small>${p.pos}</small>
             </div>
-            <div style="display: flex; gap: 15px;">
-                <div class="player-stat">
-                    <span class="stat-value">${p.stat1}</span>
-                    <span class="stat-label">${p.label1}</span>
+            <div class="stat-group">
+                <div class="stat-item">
+                    <span class="val">${p.s1}</span>
+                    <span class="lbl">${p.l1}</span>
                 </div>
-                <div class="player-stat">
-                    <span class="stat-value">${p.stat2}</span>
-                    <span class="stat-label">${p.label2}</span>
+                <div class="stat-item">
+                    <span class="val">${p.s2}</span>
+                    <span class="lbl">${p.l2}</span>
                 </div>
             </div>
         </div>

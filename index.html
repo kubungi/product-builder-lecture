@@ -27,15 +27,17 @@
     </header>
 
     <main>
-        <section id="kbo" class="container kbo-container">
-            <div class="kbo-header">
-                <h2>KBO 리그 순위 & LG 트윈스 스탯</h2>
-                <span class="update-time">2026 KBO 정규시즌 실시간</span>
+        <section id="kbo" class="container kbo-official-container">
+            <div class="kbo-official-header">
+                <div class="kbo-main-logo">KBO</div>
+                <div class="header-text">
+                    <h2>2026 KBO 리그 팀 순위</h2>
+                    <span class="live-indicator">● LIVE</span>
+                </div>
             </div>
 
-            <div class="kbo-content">
-                <div class="standings-card">
-                    <h3>팀 순위 (TOP 5)</h3>
+            <div class="kbo-official-content">
+                <div class="official-standings">
                     <div class="table-wrapper">
                         <table id="kbo-standings">
                             <thead>
@@ -45,30 +47,36 @@
                                     <th>경기</th>
                                     <th>승</th>
                                     <th>패</th>
+                                    <th>무</th>
                                     <th>승률</th>
+                                    <th>차</th>
+                                    <th>연속</th>
                                 </tr>
                             </thead>
                             <tbody id="standings-body">
-                                <tr><td colspan="6" class="loading">데이터 로딩 중...</td></tr>
+                                <tr><td colspan="9" class="loading">KBO 공식 데이터를 불러오는 중...</td></tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
 
-                <div class="lg-player-card">
-                    <div class="lg-logo-header">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/LG_Twins_logo.svg/200px-LG_Twins_logo.svg.png" alt="LG Twins Logo" class="lg-logo">
-                        <h3>LG Twins 주요 선수</h3>
+                <div class="lg-official-stats">
+                    <div class="lg-card-header">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c5/LG_Twins_logo.svg/200px-LG_Twins_logo.svg.png" alt="LG Twins" class="lg-logo-small">
+                        <h3>LG Twins 성적</h3>
                     </div>
-                    <div id="lg-stats-container" class="player-stats-grid">
-                        <div class="loading">선수 기록을 불러오는 중...</div>
+                    <div id="lg-stats-container" class="player-stats-list">
+                        <!-- JS에서 렌더링 -->
                     </div>
                 </div>
             </div>
             
-            <div class="weather-footer" style="margin-top: 20px;">
-                <p>기록 제공: KBO 공식 기록실 참조</p>
-                <a href="https://www.koreabaseball.com/TeamRank/Team/Rank.aspx" target="_blank" class="kma-link">KBO 공식 순위 보기</a>
+            <div class="kbo-official-footer">
+                <p>본 정보는 KBO 공식 기록실 자료를 바탕으로 재구성되었습니다.</p>
+                <div class="footer-links">
+                    <a href="https://www.koreabaseball.com/TeamRank/Team/Rank.aspx" target="_blank">팀순위 상세</a>
+                    <a href="https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx" target="_blank">선수기록 상세</a>
+                </div>
             </div>
         </section>
 
