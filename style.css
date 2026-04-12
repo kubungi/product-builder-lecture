@@ -474,8 +474,86 @@ details p {
     font-weight: bold;
 }
 
-@media (max-width: 850px) {
-    .kbo-official-content { grid-template-columns: 1fr; }
+.hong-chang-ki-card {
+    margin-top: 15px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    padding: 15px;
+    border-left: 6px solid #C40D2E;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    color: #333;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+[data-theme="dark"] .hong-chang-ki-card {
+    background: linear-gradient(135deg, #2b2d42 0%, #1a1b2e 100%);
+    color: #eee;
+    border-left: 6px solid #C40D2E;
+}
+
+.hong-profile {
+    flex: 0 0 80px;
+    height: 80px;
+    background: #041E42;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5em;
+    border: 3px solid #C40D2E;
+}
+
+.hong-content {
+    flex: 1;
+    text-align: left;
+}
+
+.hong-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.hong-name {
+    font-size: 1.2em;
+    font-weight: 800;
+}
+
+.hong-record-pill {
+    background: #C40D2E;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.hong-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #041E42;
+}
+
+[data-theme="dark"] .hong-stats {
+    color: #4facfe;
+}
+
+.hong-highlight {
+    font-size: 0.85em;
+    line-height: 1.5;
+    opacity: 0.9;
+}
+
+@media (max-width: 500px) {
+    .hong-chang-ki-card { flex-direction: column; text-align: center; }
+    .hong-content { text-align: center; }
+    .hong-header { justify-content: center; gap: 10px; }
+    .hong-stats { justify-content: center; }
 }
 
 .weather-header {

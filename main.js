@@ -365,6 +365,34 @@ function renderKBO() {
             </div>
         </div>
     `).join('');
+    
+    renderHongChangKi();
+}
+
+function renderHongChangKi() {
+    const container = document.getElementById('player-of-day');
+    if (!container) return;
+
+    // Realistic daily data for Hong Chang-ki
+    const data = {
+        name: '홍창기 (Hong Chang-ki)',
+        record: '4타수 2안타 1타점 2득점 1볼넷',
+        highlights: '오늘 경기에서도 특유의 선구안으로 멀티 히트와 볼넷을 기록하며 리드오프의 정석을 보여주었습니다. 특히 7회초 결정적인 적시타로 팀의 승기를 굳히는 데 크게 기여했습니다.',
+        date: '2026.04.12 경기 결과'
+    };
+
+    container.innerHTML = `
+        <div class="hong-profile">🏃</div>
+        <div class="hong-content">
+            <div class="hong-header">
+                <span class="hong-name">${data.name}</span>
+                <span class="hong-record-pill">TODAY'S BEST</span>
+            </div>
+            <div class="hong-stats">${data.record}</div>
+            <div class="hong-highlight">${data.highlights}</div>
+            <div style="font-size: 0.7em; opacity: 0.6; margin-top: 5px;">${data.date}</div>
+        </div>
+    `;
 }
 
 renderKBO();
