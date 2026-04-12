@@ -313,18 +313,18 @@ function renderKBO() {
     const standingsBody = document.getElementById('standings-body');
     const playerStatsGrid = document.getElementById('lg-stats-container');
 
-    // Full 10 teams data for more realism
+    // 2024 KBO 정규시즌 최종 순위 데이터 (공식 기록 반영)
     const standings = [
-        { rank: 1, team: '기아', logo: '🐯', g: 15, w: 10, l: 5, d: 0, pct: '.667', gb: '-', strk: '2승' },
-        { rank: 2, team: 'LG', logo: '⚾', g: 16, w: 9, l: 7, d: 0, pct: '.563', gb: '1.5', strk: '1패' },
-        { rank: 3, team: 'NC', logo: '🦖', g: 15, w: 9, l: 6, d: 0, pct: '.600', gb: '1.0', strk: '3승' },
-        { rank: 4, team: 'SSG', logo: '🚀', g: 16, w: 8, l: 8, d: 0, pct: '.500', gb: '2.5', strk: '2패' },
-        { rank: 5, team: '두산', logo: '🐻', g: 15, w: 7, l: 8, d: 0, pct: '.467', gb: '3.0', strk: '1승' },
-        { rank: 6, team: 'KT', logo: '🧙', g: 16, w: 7, l: 9, d: 0, pct: '.438', gb: '3.5', strk: '1패' },
-        { rank: 7, team: '한화', logo: '🦅', g: 15, w: 7, l: 8, d: 0, pct: '.467', gb: '3.0', strk: '2승' },
-        { rank: 8, team: '삼성', logo: '🦁', g: 16, w: 7, l: 9, d: 0, pct: '.438', gb: '3.5', strk: '3패' },
-        { rank: 9, team: '롯데', logo: '⚓', g: 15, w: 6, l: 9, d: 0, pct: '.400', gb: '4.0', strk: '1승' },
-        { rank: 10, team: '키움', logo: '🦸', g: 15, w: 6, l: 9, d: 0, pct: '.400', gb: '4.0', strk: '2패' }
+        { rank: 1, team: 'KIA', logo: '🐯', g: 144, w: 87, l: 55, d: 2, pct: '.613', gb: '-', strk: '1승' },
+        { rank: 2, team: '삼성', logo: '🦁', g: 144, w: 78, l: 64, d: 2, pct: '.549', gb: '9.0', strk: '1패' },
+        { rank: 3, team: 'LG', logo: '⚾', g: 144, w: 76, l: 66, d: 2, pct: '.535', gb: '11.0', strk: '1승' },
+        { rank: 4, team: '두산', logo: '🐻', g: 144, w: 74, l: 68, d: 2, pct: '.521', gb: '13.0', strk: '1패' },
+        { rank: 5, team: 'KT', logo: '🧙', g: 144, w: 72, l: 70, d: 2, pct: '.507', gb: '15.0', strk: '1승' },
+        { rank: 6, team: 'SSG', logo: '🚀', g: 144, w: 72, l: 70, d: 2, pct: '.507', gb: '15.0', strk: '2패' },
+        { rank: 7, team: '롯데', logo: '⚓', g: 144, w: 66, l: 74, d: 4, pct: '.471', gb: '20.0', strk: '1패' },
+        { rank: 8, team: '한화', logo: '🦅', g: 144, w: 66, l: 76, d: 2, pct: '.465', gb: '21.0', strk: '1패' },
+        { rank: 9, team: 'NC', logo: '🦖', g: 144, w: 61, l: 81, d: 2, pct: '.430', gb: '26.0', strk: '2패' },
+        { rank: 10, team: '키움', logo: '🦸', g: 144, w: 58, l: 86, d: 0, pct: '.403', gb: '30.0', strk: '5패' }
     ];
 
     const players = [
