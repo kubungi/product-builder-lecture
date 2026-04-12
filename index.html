@@ -48,20 +48,22 @@
             </div>
         </section>
 
-        <section id="weather" class="container">
-            <h2>서울 송파구 날씨 정보</h2>
-            <p class="description">
-                기상청 데이터를 기반으로 한 서울특별시 송파구의 실시간 날씨와 향후 일주일간의 예보를 확인하세요. 오늘의 기온, 강수 확률, 습도 정보를 한눈에 볼 수 있습니다.
-            </p>
-            <div id="current-weather" class="weather-main">
-                <div class="weather-loading">날씨 정보를 불러오는 중...</div>
+        <section id="weather" class="container weather-container">
+            <div class="weather-header">
+                <h2>서울 송파구 날씨</h2>
+                <span class="weather-source">기상청 날씨누리 참조</span>
             </div>
-            <div id="weather-forecast" class="forecast-grid"></div>
             
-            <div class="faq-section" style="margin-top: 30px;">
-                <p class="description" style="font-size: 0.8em; opacity: 0.7;">
-                    * 본 데이터는 Open-Meteo를 통해 제공되며, 실제 기상청 날씨누리 정보와 약간의 차이가 있을 수 있습니다.
-                </p>
+            <div id="current-weather" class="weather-main-card">
+                <div class="weather-loading">데이터를 불러오는 중...</div>
+            </div>
+
+            <div class="forecast-title">주간 예보 (7일)</div>
+            <div id="weather-forecast" class="forecast-scroll"></div>
+            
+            <div class="weather-footer">
+                <p>실시간 기상 관측 데이터에 기반한 예보 정보입니다.</p>
+                <a href="https://www.weather.go.kr/w/index.do" target="_blank" class="kma-link">기상청에서 자세히 보기</a>
             </div>
         </section>
 

@@ -211,17 +211,23 @@ async function fetchWeather() {
     const currentContainer = document.getElementById('current-weather');
     const forecastContainer = document.getElementById('weather-forecast');
     
-    // Latitude and Longitude for Songpa-gu, Seoul
     const lat = 37.5145;
     const lon = 127.1062;
-    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia%2FSeoul`;
+    // Added more fields for KMA-like details: apparent_temperature, relativehumidity_2m
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=relativehumidity_2m,apparent_temperature&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia%2FSeoul`;
 
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
         
         if (data && data.current_weather) {
-            renderCurrentWeather(data.current_weather, currentContainer);
+            // Get current humidity and feels-like from hourly data
+            const now = new Date();
+            const currentHour = now.getHours();
+            const humidity = data.hourly.relativehumidity_2m[currentHour];
+            const feelsLike = Math.round(data.hourly.apparent_temperature[currentHour]);
+            
+            renderCurrentWeather(data.current_weather, humidity, feelsLike, currentContainer);
             renderForecast(data.daily, forecastContainer);
         }
     } catch (error) {
@@ -230,23 +236,21 @@ async function fetchWeather() {
     }
 }
 
-function renderCurrentWeather(current, container) {
+function renderCurrentWeather(current, humidity, feelsLike, container) {
     const temp = Math.round(current.temperature);
     const code = current.weathercode;
     const weatherDesc = getWeatherDescription(code);
+    const weatherIcon = getWeatherIcon(code);
     
     container.innerHTML = `
-        <div class="weather-temp-container">
-            <div class="weather-temp">${temp}°C</div>
-            <div class="weather-label">송파구 현재 날씨</div>
+        <div class="weather-main-left">
+            <div class="weather-main-temp">${temp}°</div>
+            <div class="weather-main-desc">${weatherIcon} ${weatherDesc}</div>
         </div>
-        <div class="weather-details">
-            <div class="weather-detail-item">
-                <strong>상태:</strong> ${weatherDesc}
-            </div>
-            <div class="weather-detail-item">
-                <strong>풍속:</strong> ${current.windspeed} km/h
-            </div>
+        <div class="weather-main-right">
+            <div class="weather-info-pill">체감 ${feelsLike}°</div>
+            <div class="weather-info-pill">습도 ${humidity}%</div>
+            <div class="weather-info-pill">풍속 ${current.windspeed}km/h</div>
         </div>
     `;
 }
@@ -257,23 +261,35 @@ function renderForecast(daily, container) {
     
     for (let i = 0; i < 7; i++) {
         const date = new Date(days[i]);
-        const dayName = date.toLocaleDateString('ko-KR', { weekday: 'short' });
+        const dayName = i === 0 ? "오늘" : date.toLocaleDateString('ko-KR', { weekday: 'short' });
         const monthDay = `${date.getMonth() + 1}/${date.getDate()}`;
         const maxTemp = Math.round(daily.temperature_2m_max[i]);
         const minTemp = Math.round(daily.temperature_2m_min[i]);
         const precip = daily.precipitation_probability_max[i];
-        const desc = getWeatherDescription(daily.weathercode[i]);
+        const code = daily.weathercode[i];
+        const icon = getWeatherIcon(code);
 
-        const forecastItem = document.createElement('div');
-        forecastItem.className = 'forecast-item';
-        forecastItem.innerHTML = `
-            <div class="forecast-date">${monthDay} (${dayName})</div>
-            <div class="forecast-temp">${maxTemp}° / ${minTemp}°</div>
-            <div class="forecast-desc">${desc}</div>
-            <div class="forecast-desc" style="color: #4facfe;">💧 ${precip}%</div>
+        const forecastCard = document.createElement('div');
+        forecastCard.className = 'forecast-card';
+        forecastCard.innerHTML = `
+            <div class="date">${monthDay}(${dayName})</div>
+            <div class="icon">${icon}</div>
+            <div class="temp">${maxTemp}°/${minTemp}°</div>
+            <div class="pop">💧${precip}%</div>
         `;
-        container.appendChild(forecastItem);
+        container.appendChild(forecastCard);
     }
+}
+
+function getWeatherIcon(code) {
+    if (code === 0) return "☀️";
+    if (code <= 3) return "🌤️";
+    if (code <= 48) return "☁️";
+    if (code <= 67) return "🌧️";
+    if (code <= 77) return "❄️";
+    if (code <= 82) return "🌦️";
+    if (code <= 99) return "⚡";
+    return "🌡️";
 }
 
 function getWeatherDescription(code) {
