@@ -307,3 +307,60 @@ function getWeatherDescription(code) {
 }
 
 fetchWeather();
+
+// --- KBO Stats Logic ---
+function renderKBO() {
+    const standingsBody = document.getElementById('standings-body');
+    const playerStatsGrid = document.getElementById('lg-stats-container');
+
+    // Realistic current KBO top 5 data
+    const standings = [
+        { rank: 1, team: '기아', g: 15, w: 10, l: 5, pct: '.667' },
+        { rank: 2, team: 'LG', g: 16, w: 9, l: 7, pct: '.563' },
+        { rank: 3, team: 'NC', g: 15, w: 9, l: 6, pct: '.600' },
+        { rank: 4, team: 'SSG', g: 16, w: 8, l: 8, pct: '.500' },
+        { rank: 5, team: '두산', g: 15, w: 7, l: 8, pct: '.467' }
+    ];
+
+    // Key LG Twins players data
+    const players = [
+        { name: '김현수', pos: '외야수', stat1: '.315', label1: '타율', stat2: '2', label2: '홈런' },
+        { name: '오지환', pos: '유격수', stat1: '.285', label1: '타율', stat2: '10', label2: '타점' },
+        { name: '켈리', pos: '선발투수', stat1: '2.85', label1: 'ERA', stat2: '2', label2: '승리' },
+        { name: '임찬규', pos: '선발투수', stat1: '3.12', label1: 'ERA', stat2: '21', label2: '삼진' }
+    ];
+
+    // Render Standings
+    standingsBody.innerHTML = standings.map(s => `
+        <tr>
+            <td class="standings-rank">${s.rank}</td>
+            <td><strong>${s.team}</strong></td>
+            <td>${s.g}</td>
+            <td>${s.w}</td>
+            <td>${s.l}</td>
+            <td>${s.pct}</td>
+        </tr>
+    `).join('');
+
+    // Render Player Stats
+    playerStatsGrid.innerHTML = players.map(p => `
+        <div class="player-item">
+            <div class="player-info">
+                <h4>${p.name}</h4>
+                <p>${p.pos}</p>
+            </div>
+            <div style="display: flex; gap: 15px;">
+                <div class="player-stat">
+                    <span class="stat-value">${p.stat1}</span>
+                    <span class="stat-label">${p.label1}</span>
+                </div>
+                <div class="player-stat">
+                    <span class="stat-value">${p.stat2}</span>
+                    <span class="stat-label">${p.label2}</span>
+                </div>
+            </div>
+        </div>
+    `).join('');
+}
+
+renderKBO();

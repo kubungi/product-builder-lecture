@@ -303,10 +303,154 @@ details p {
     cursor: default;
 }
 
-.weather-container {
-    max-width: 600px;
+.kbo-container {
+    max-width: 900px;
     padding: 30px;
     background: var(--container-bg);
+}
+
+.kbo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #C40D2E; /* LG Twins Red */
+    padding-bottom: 10px;
+}
+
+.update-time {
+    font-size: 0.8em;
+    color: #C40D2E;
+    font-weight: bold;
+}
+
+.kbo-content {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.standings-card {
+    flex: 1.5;
+    min-width: 300px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+}
+
+[data-theme="light"] .standings-card {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.lg-player-card {
+    flex: 1;
+    min-width: 280px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid rgba(196, 13, 46, 0.2);
+}
+
+.lg-logo-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.lg-logo {
+    width: 40px;
+    height: auto;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+#kbo-standings {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+#kbo-standings th {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 12px 8px;
+    text-align: left;
+}
+
+[data-theme="light"] #kbo-standings th {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+#kbo-standings td {
+    padding: 12px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.standings-rank {
+    font-weight: bold;
+    color: var(--btn-bg);
+}
+
+.player-stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.player-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 4px solid #C40D2E;
+}
+
+[data-theme="light"] .player-item {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.player-info h4 {
+    margin: 0;
+    font-size: 1em;
+}
+
+.player-info p {
+    margin: 3px 0 0;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+.player-stat {
+    text-align: right;
+}
+
+.stat-value {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #C40D2E;
+}
+
+.stat-label {
+    font-size: 0.7em;
+    display: block;
+    opacity: 0.8;
+}
+
+.loading {
+    padding: 20px;
+    text-align: center;
+    font-style: italic;
+    opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+    .kbo-content {
+        flex-direction: column;
+    }
 }
 
 .weather-header {
