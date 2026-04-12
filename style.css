@@ -302,3 +302,109 @@ details p {
     opacity: 0.9;
     cursor: default;
 }
+
+.weather-main {
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+}
+
+[data-theme="light"] .weather-main {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.weather-temp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-temp {
+    font-size: 4em;
+    font-weight: bold;
+    color: var(--btn-bg);
+    line-height: 1;
+}
+
+.weather-label {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    text-align: left;
+}
+
+.weather-detail-item {
+    padding: 10px 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+[data-theme="light"] .weather-detail-item {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    gap: 15px;
+    width: 100%;
+}
+
+.forecast-item {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 20px 10px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .forecast-item {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.forecast-item:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.forecast-date {
+    font-size: 0.85em;
+    font-weight: bold;
+    margin-bottom: 12px;
+    opacity: 0.8;
+}
+
+.forecast-temp {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: var(--btn-bg);
+}
+
+.forecast-desc {
+    font-size: 0.75em;
+    margin-top: 8px;
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.weather-loading {
+    padding: 40px;
+    font-style: italic;
+    opacity: 0.7;
+    width: 100%;
+}

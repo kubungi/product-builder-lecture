@@ -205,3 +205,89 @@ async function handleSubmit(event) {
 }
 
 form.addEventListener("submit", handleSubmit);
+
+// --- Weather Logic (Songpa-gu, Seoul) ---
+async function fetchWeather() {
+    const currentContainer = document.getElementById('current-weather');
+    const forecastContainer = document.getElementById('weather-forecast');
+    
+    // Latitude and Longitude for Songpa-gu, Seoul
+    const lat = 37.5145;
+    const lon = 127.1062;
+    const apiUrl = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weathercode&timezone=Asia%2FSeoul`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        
+        if (data && data.current_weather) {
+            renderCurrentWeather(data.current_weather, currentContainer);
+            renderForecast(data.daily, forecastContainer);
+        }
+    } catch (error) {
+        console.error("Weather fetch failed:", error);
+        currentContainer.innerHTML = "날씨 정보를 불러오는 데 실패했습니다.";
+    }
+}
+
+function renderCurrentWeather(current, container) {
+    const temp = Math.round(current.temperature);
+    const code = current.weathercode;
+    const weatherDesc = getWeatherDescription(code);
+    
+    container.innerHTML = `
+        <div class="weather-temp-container">
+            <div class="weather-temp">${temp}°C</div>
+            <div class="weather-label">송파구 현재 날씨</div>
+        </div>
+        <div class="weather-details">
+            <div class="weather-detail-item">
+                <strong>상태:</strong> ${weatherDesc}
+            </div>
+            <div class="weather-detail-item">
+                <strong>풍속:</strong> ${current.windspeed} km/h
+            </div>
+        </div>
+    `;
+}
+
+function renderForecast(daily, container) {
+    container.innerHTML = '';
+    const days = daily.time;
+    
+    for (let i = 0; i < 7; i++) {
+        const date = new Date(days[i]);
+        const dayName = date.toLocaleDateString('ko-KR', { weekday: 'short' });
+        const monthDay = `${date.getMonth() + 1}/${date.getDate()}`;
+        const maxTemp = Math.round(daily.temperature_2m_max[i]);
+        const minTemp = Math.round(daily.temperature_2m_min[i]);
+        const precip = daily.precipitation_probability_max[i];
+        const desc = getWeatherDescription(daily.weathercode[i]);
+
+        const forecastItem = document.createElement('div');
+        forecastItem.className = 'forecast-item';
+        forecastItem.innerHTML = `
+            <div class="forecast-date">${monthDay} (${dayName})</div>
+            <div class="forecast-temp">${maxTemp}° / ${minTemp}°</div>
+            <div class="forecast-desc">${desc}</div>
+            <div class="forecast-desc" style="color: #4facfe;">💧 ${precip}%</div>
+        `;
+        container.appendChild(forecastItem);
+    }
+}
+
+function getWeatherDescription(code) {
+    const codes = {
+        0: "맑음",
+        1: "대체로 맑음", 2: "구름 조금", 3: "흐림",
+        45: "안개", 48: "침적 안개",
+        51: "가벼운 이슬비", 53: "이슬비", 55: "강한 이슬비",
+        61: "약한 비", 63: "보통 비", 65: "강한 비",
+        71: "약한 눈", 73: "보통 눈", 75: "강한 눈",
+        80: "약한 소나기", 81: "보통 소나기", 82: "강한 소나기",
+        95: "천둥번개",
+    };
+    return codes[code] || "정보 없음";
+}
+
+fetchWeather();
