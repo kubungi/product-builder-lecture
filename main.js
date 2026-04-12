@@ -77,6 +77,7 @@ customElements.define('lotto-numbers', LottoNumbers);
 const generateBtn = document.getElementById('generate-btn');
 const themeToggle = document.getElementById('theme-toggle');
 const body = document.body;
+const form = document.querySelector('form');
 
 generateBtn.addEventListener('click', () => {
     document.querySelector('lotto-numbers').generate();
@@ -89,3 +90,43 @@ themeToggle.addEventListener('click', () => {
     body.setAttribute('data-theme', newTheme);
     themeToggle.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
 });
+
+async function handleSubmit(event) {
+    event.preventDefault();
+    const status = document.createElement('p');
+    status.style.marginTop = "15px";
+    status.style.fontWeight = "bold";
+    
+    const data = new FormData(event.target);
+    fetch(event.target.action, {
+        method: form.method,
+        body: data,
+        headers: {
+            'Accept': 'application/json'
+        }
+    }).then(response => {
+        if (response.ok) {
+            status.innerHTML = "문의가 성공적으로 전송되었습니다! 곧 연락드리겠습니다.";
+            status.style.color = "#4CAF50";
+            form.reset();
+        } else {
+            response.json().then(data => {
+                if (Object.hasOwn(data, 'errors')) {
+                    status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                } else {
+                    status.innerHTML = "앗! 전송 중에 문제가 발생했습니다.";
+                }
+                status.style.color = "#f44336";
+            })
+        }
+    }).catch(error => {
+        status.innerHTML = "앗! 전송 중에 문제가 발생했습니다.";
+        status.style.color = "#f44336";
+    });
+    
+    const existingStatus = form.querySelector('p');
+    if (existingStatus) existingStatus.remove();
+    form.appendChild(status);
+}
+
+form.addEventListener("submit", handleSubmit);
