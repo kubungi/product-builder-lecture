@@ -74,14 +74,27 @@ class LottoNumbers extends HTMLElement {
 
 customElements.define('lotto-numbers', LottoNumbers);
 
+// --- Global Elements ---
 const generateBtn = document.getElementById('generate-btn');
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
 const form = document.querySelector('form');
 
-generateBtn.addEventListener('click', () => {
-    document.querySelector('lotto-numbers').generate();
-});
+if (generateBtn) {
+    generateBtn.addEventListener('click', () => {
+        const lottoComp = document.querySelector('lotto-numbers');
+        if (lottoComp) lottoComp.generate();
+    });
+}
+
+// --- Theme Toggle Logic ---
+const themeToggle = document.getElementById('theme-toggle');
+const body = document.body;
+
+// Initialize theme
+const savedTheme = localStorage.getItem('theme') || 'dark';
+body.setAttribute('data-theme', savedTheme);
+if (themeToggle) {
+    themeToggle.textContent = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+}
 
 themeToggle.addEventListener('click', () => {
     const currentTheme = body.getAttribute('data-theme');
@@ -89,6 +102,7 @@ themeToggle.addEventListener('click', () => {
     
     body.setAttribute('data-theme', newTheme);
     themeToggle.textContent = newTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+    localStorage.setItem('theme', newTheme);
 });
 
 // --- Teachable Machine Logic (File Upload) ---

@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Tool: Lotto & Animal Test</title>
+    <title>멀티툴: 로또 번호 생성기 & 동물상 테스트</title>
+    <meta name="description" content="행운의 로또 번호를 생성하고, AI 인공지능을 통해 당신의 동물상을 확인해보세요! 강아지상, 고양이상 테스트와 제휴 문의 서비스를 제공합니다.">
+    <meta name="keywords" content="로또번호생성기, 동물상테스트, 인공지능테스트, 강아지상, 고양이상, 무료운세, 멀티툴">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
@@ -11,45 +13,75 @@
      crossorigin="anonymous"></script>
 </head>
 <body data-theme="dark">
-    <button id="theme-toggle">Light Mode</button>
-    
-    <div class="container">
-        <h1>Lotto Number Generator</h1>
-        <lotto-numbers></lotto-numbers>
-        <button id="generate-btn">Generate Numbers</button>
-    </div>
+    <header>
+        <nav>
+            <div class="logo">Multi-Tool</div>
+            <ul class="nav-links">
+                <li><a href="#lotto">로또 생성기</a></li>
+                <li><a href="#animal-test">동물상 테스트</a></li>
+                <li><a href="#inquiry">제휴 문의</a></li>
+            </ul>
+            <button id="theme-toggle">Light Mode</button>
+        </nav>
+    </header>
 
-    <div class="container animal-test-container">
-        <h2>동물상 테스트 (강아지 vs 고양이)</h2>
-        <p>사진을 업로드하여 동물상을 확인해보세요!</p>
-        <div class="upload-section">
-            <input type="file" id="image-upload" accept="image/*" hidden>
-            <button type="button" id="upload-btn" class="submit-btn">사진 업로드하기</button>
-        </div>
-        <div id="image-preview-container" style="display: none; margin-top: 20px;">
-            <img id="image-preview" src="" alt="Preview" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-        </div>
-        <div id="label-container"></div>
-    </div>
+    <main>
+        <section id="lotto" class="container">
+            <h1>로또 번호 생성기</h1>
+            <p class="description">
+                매주 수만 명이 사용하는 알고리즘을 바탕으로 행운의 번호를 추천해 드립니다. 1부터 45까지의 숫자 중 중복되지 않는 6개의 숫자를 무작위로 추출하여 당신의 당첨 확률을 높여보세요. 아래 버튼을 눌러 지금 바로 번호를 확인하세요!
+            </p>
+            <lotto-numbers></lotto-numbers>
+            <button id="generate-btn">번호 생성하기</button>
+        </section>
 
-    <div class="form-container">
-        <h2>제휴 문의</h2>
-        <form action="https://formspree.io/f/xvzveepk" method="POST">
-            <div class="form-group">
-                <label for="name">이름</label>
-                <input type="text" id="name" name="name" required placeholder="성함을 입력해주세요">
+        <section id="animal-test" class="container animal-test-container">
+            <h2>동물상 테스트 (강아지 vs 고양이)</h2>
+            <p class="description">
+                구글의 인공지능(AI) Teachable Machine을 활용하여 당신의 얼굴 이미지를 분석합니다. 당신은 귀여운 강아지상인가요, 아니면 시크한 고양이상인가요? 사진을 업로드하여 즉석에서 결과를 확인해보세요. 업로드된 사진은 서버에 저장되지 않으므로 안심하고 사용하실 수 있습니다.
+            </p>
+            <div class="upload-section">
+                <input type="file" id="image-upload" accept="image/*" hidden>
+                <button type="button" id="upload-btn" class="submit-btn">사진 업로드하기</button>
             </div>
-            <div class="form-group">
-                <label for="email">이메일</label>
-                <input type="email" id="email" name="_replyto" required placeholder="이메일 주소를 입력해주세요">
+            <div id="image-preview-container" style="display: none; margin-top: 20px;">
+                <img id="image-preview" src="" alt="Preview" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
             </div>
-            <div class="form-group">
-                <label for="message">문의 내용</label>
-                <textarea id="message" name="message" rows="5" required placeholder="문의하실 내용을 입력해주세요"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">문의하기</button>
-        </form>
-    </div>
+            <div id="label-container"></div>
+        </section>
+
+        <section id="inquiry" class="form-container">
+            <h2>제휴 및 서비스 문의</h2>
+            <p class="description">
+                멀티툴 서비스에 대한 제안이나 비즈니스 제휴 문의가 있으시면 아래 양식을 통해 연락 부탁드립니다. 보내주신 소중한 의견은 서비스 개선에 적극 반영하도록 하겠습니다.
+            </p>
+            <form action="https://formspree.io/f/xvzveepk" method="POST">
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" name="name" required placeholder="성함을 입력해주세요">
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="_replyto" required placeholder="이메일 주소를 입력해주세요">
+                </div>
+                <div class="form-group">
+                    <label for="message">문의 내용</label>
+                    <textarea id="message" name="message" rows="5" required placeholder="문의하실 내용을 입력해주세요"></textarea>
+                </div>
+                <button type="submit" class="submit-btn">문의하기</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2026 Multi-Tool Service. All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="privacy-policy.html">개인정보처리방침</a></li>
+                <li><a href="#inquiry">고객센터</a></li>
+            </ul>
+        </div>
+    </footer>
 
     <script src="main.js"></script>
 </body>
