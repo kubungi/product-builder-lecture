@@ -395,4 +395,62 @@ function renderHongChangKi() {
     `;
 }
 
-renderKBO();
+// --- Radio Logic ---
+let hls;
+
+function initRadio() {
+    const radioPlayer = document.getElementById('radio-player');
+    const stationBtns = document.querySelectorAll('.station-btn');
+    const currentStationName = document.getElementById('current-station-name');
+
+    stationBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const url = btn.getAttribute('data-url');
+            const name = btn.getAttribute('data-name');
+
+            // Update UI
+            stationBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentStationName.textContent = name;
+
+            // Stop current playback
+            if (hls) {
+                hls.destroy();
+                hls = null;
+            }
+            radioPlayer.pause();
+            radioPlayer.src = '';
+
+            // Play radio
+            if (url.endsWith('.m3u8')) {
+                if (Hls.isSupported()) {
+                    hls = new Hls();
+                    hls.loadSource(url);
+                    hls.attachMedia(radioPlayer);
+                    hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                        radioPlayer.play();
+                    });
+                } else if (radioPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+                    // Native HLS support (Safari)
+                    radioPlayer.src = url;
+                    radioPlayer.addEventListener('loadedmetadata', function() {
+                        radioPlayer.play();
+                    });
+                } else {
+                    alert("이 브라우저는 HLS 재생을 지원하지 않습니다.");
+                }
+            } else {
+                // Regular audio stream
+                radioPlayer.src = url;
+                radioPlayer.play().catch(error => {
+                    console.error("Radio playback failed:", error);
+                    alert("방송을 재생할 수 없습니다.");
+                });
+            }
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initRadio();
+});

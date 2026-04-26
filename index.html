@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2105859744321741"
      crossorigin="anonymous"></script>
 </head>
@@ -43,6 +44,51 @@
     </header>
 
     <main>
+        <section id="radio" class="container radio-container">
+            <div class="radio-header">
+                <h2>대한민국 실시간 FM 라디오</h2>
+                <span class="live-indicator">● LIVE STREAMING</span>
+            </div>
+            <p class="description">원하시는 방송국을 선택하여 실시간 FM 라디오를 감상해보세요.</p>
+            
+            <div class="radio-player-container">
+                <div id="current-station-info" class="current-station-info">
+                    <span class="station-icon">📻</span>
+                    <span id="current-station-name">방송을 선택해주세요</span>
+                </div>
+                <audio id="radio-player" controls>
+                    브라우저가 오디오 재생을 지원하지 않습니다.
+                </audio>
+            </div>
+
+            <div class="station-grid">
+                <button class="station-btn" data-url="http://anywhere.sbs.co.kr/powerfm.m3u8" data-name="SBS 파워FM (107.7)">
+                    <span class="btn-icon">⚡</span> SBS 파워FM
+                </button>
+                <button class="station-btn" data-url="http://anywhere.sbs.co.kr/lovefm.m3u8" data-name="SBS 러브FM (103.5)">
+                    <span class="btn-icon">❤️</span> SBS 러브FM
+                </button>
+                <button class="station-btn" data-url="https://mfm4u.imbc.com/fm4u/_definst_/fm4u.stream/playlist.m3u8" data-name="MBC FM4U (91.9)">
+                    <span class="btn-icon">🎵</span> MBC FM4U
+                </button>
+                <button class="station-btn" data-url="https://msfm.imbc.com/sfm/_definst_/sfm.stream/playlist.m3u8" data-name="MBC 표준FM (95.9)">
+                    <span class="btn-icon">📻</span> MBC 표준FM
+                </button>
+                <button class="station-btn" data-url="http://kbs-hls.gslb.cdn.ucloud.com/live/2fm/playlist.m3u8" data-name="KBS 쿨FM (89.1)">
+                    <span class="btn-icon">😎</span> KBS 쿨FM
+                </div>
+                <button class="station-btn" data-url="http://kbs-hls.gslb.cdn.ucloud.com/live/1fm/playlist.m3u8" data-name="KBS 클래식FM (93.1)">
+                    <span class="btn-icon">🎻</span> KBS 클래식FM
+                </button>
+                <button class="station-btn" data-url="http://aac.cbs.co.kr/musicfm/musicfm.stream/playlist.m3u8" data-name="CBS 음악FM (93.9)">
+                    <span class="btn-icon">🎼</span> CBS 음악FM
+                </button>
+                <button class="station-btn" data-url="http://ebsonair.ebs.co.kr/fm/playlist.m3u8" data-name="EBS FM (104.5)">
+                    <span class="btn-icon">📖</span> EBS FM
+                </button>
+            </div>
+        </section>
+
         <section id="kbo" class="container kbo-official-container">
             <div class="kbo-official-header">
                 <div class="kbo-main-logo">KBO</div>
