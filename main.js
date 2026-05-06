@@ -150,15 +150,29 @@ themeToggle.addEventListener('click', () => {
 });
 
 // --- Language Toggle Logic ---
-const langSelect = document.getElementById('lang-select');
-if (langSelect) {
-    langSelect.value = currentLang;
-    langSelect.addEventListener('change', (e) => {
-        currentLang = e.target.value;
-        localStorage.setItem('lang', currentLang);
-        loadTranslations(currentLang);
+function updateLangButtons(lang) {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        if (btn.getAttribute('data-lang') === lang) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
     });
 }
+
+const langBtns = document.querySelectorAll('.lang-btn');
+langBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        const lang = btn.getAttribute('data-lang');
+        currentLang = lang;
+        localStorage.setItem('lang', currentLang);
+        loadTranslations(currentLang);
+        updateLangButtons(currentLang);
+    });
+});
+
+// Initialize active button
+updateLangButtons(currentLang);
 
 // --- Teachable Machine Logic (File Upload) ---
 const URL = "https://teachablemachine.withgoogle.com/models/GL9c80bVi/";

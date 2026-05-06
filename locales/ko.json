@@ -1,5 +1,7 @@
 {
   "nav": {
+    "radio": "라디오",
+    "kbo": "KBO 순위",
     "lotto": "로또 생성기",
     "weather": "날씨 정보",
     "animal_test": "동물상 테스트",

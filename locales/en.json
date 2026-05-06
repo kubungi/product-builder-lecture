@@ -1,5 +1,7 @@
 {
   "nav": {
+    "radio": "Radio",
+    "kbo": "KBO Rank",
     "lotto": "Lotto",
     "weather": "Weather",
     "animal_test": "Animal Test",
