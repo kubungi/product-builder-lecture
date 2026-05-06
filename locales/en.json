@@ -1,0 +1,91 @@
+{
+  "nav": {
+    "lotto": "Lotto",
+    "weather": "Weather",
+    "animal_test": "Animal Test",
+    "inquiry": "Contact"
+  },
+  "radio": {
+    "title": "Korea Live FM Radio",
+    "subtitle": "Select a station to enjoy live FM radio streaming.",
+    "select_station": "Please select a station",
+    "not_supported": "Your browser does not support audio playback."
+  },
+  "kbo": {
+    "title": "2026 KBO League Live Standings",
+    "loading": "Loading KBO official data...",
+    "player_loading": "Loading player data...",
+    "lg_stats": "LG Twins Stats",
+    "footer": "Information based on official KBO data.",
+    "team_details": "Team Details",
+    "player_details": "Player Details",
+    "rank": "Rank",
+    "team": "Team",
+    "games": "G",
+    "wins": "W",
+    "losses": "L",
+    "draws": "D",
+    "pct": "PCT",
+    "gb": "GB",
+    "streak": "STRK"
+  },
+  "lotto": {
+    "title": "Lotto Number Generator",
+    "description": "Get lucky numbers based on an algorithm used by thousands. Randomly pick 6 unique numbers from 1 to 45 to increase your odds. Click below to generate now!",
+    "generate": "Generate Numbers",
+    "faq_title": "FAQ",
+    "q1": "How does the algorithm work?",
+    "a1": "Our algorithm uses pure random number generation, ensuring each number has an equal chance. While it doesn't guarantee a win, it's optimized for fun and convenience.",
+    "q2": "Are the numbers saved?",
+    "a2": "For your privacy, numbers are not saved and will disappear on refresh. Please note down any numbers you like."
+  },
+  "weather": {
+    "title": "Seoul Songpa-gu Weather",
+    "source": "Source: KMA Weather Nuri",
+    "loading": "Loading weather data...",
+    "forecast_title": "Weekly Forecast (7 Days)",
+    "footer": "Forecast based on real-time observation data.",
+    "kma_link": "View more at KMA",
+    "today": "Today",
+    "feels_like": "Feels",
+    "humidity": "Humidity",
+    "wind": "Wind"
+  },
+  "animal_test": {
+    "title": "Animal Face Test (Dog vs Cat)",
+    "description": "Analyze your face using Google's AI Teachable Machine. Are you a cute dog type or a chic cat type? Upload a photo to find out instantly!",
+    "upload": "Upload Photo",
+    "analyzing": "Analyzing...",
+    "reupload": "Upload Another Photo",
+    "guide_title": "Animal Test Guide",
+    "guide_description": "Based on an AI model trained on thousands of dog and cat photos. It analyzes your facial features and contours to show the most similar type as a percentage.",
+    "q_safe": "Is my photo data safe?",
+    "a_safe": "Yes, it's safe. All analysis happens in your browser. No images are sent to or stored on our server."
+  },
+  "about": {
+    "title": "About Multi-Tool",
+    "description": "Multi-Tool provides various fun and useful tools for everyday life. We use the latest web tech and AI to build features that are easy for everyone to enjoy. We value user feedback to keep improving."
+  },
+  "inquiry": {
+    "title": "Contact Us",
+    "description": "For suggestions or business inquiries, please reach out via the form below. We value your feedback.",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "name_placeholder": "Enter your name",
+    "email_placeholder": "Enter your email address",
+    "message_placeholder": "Enter your message",
+    "submit": "Submit",
+    "success": "Message sent successfully! We'll get back to you soon.",
+    "error": "Oops! Something went wrong while sending."
+  },
+  "footer": {
+    "rights": "© 2026 Multi-Tool Service. All rights reserved.",
+    "privacy": "Privacy Policy",
+    "help": "Help Center"
+  },
+  "common": {
+    "light_mode": "Light Mode",
+    "dark_mode": "Dark Mode"
+  }
+}
